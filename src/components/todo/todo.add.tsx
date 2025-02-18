@@ -14,13 +14,13 @@ export const TodoAddEditModal: React.FC<{ onClose: () => void, todoId?: number }
   const [status] = useState(todo?.status || TodoStatusEnum.NOT_STARTED);
   const dispatch = useDispatch();
 
-  const onSubmit = (e: SubmitEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (e.target) {
       const formData = new FormData(e.target as HTMLFormElement);
       const data: Record<string, string> = {};
       for (const [key, value] of formData.entries()) {
-        data[key] = value;
+        data[key] = value.toString();
       }
       if (todo) {
         dispatch({
@@ -56,16 +56,26 @@ export const TodoAddEditModal: React.FC<{ onClose: () => void, todoId?: number }
             placeholder="Issue title"
             value={title}
             onChange={e => {
-              setTitle(e.target.value.trim())
               setChanged(true);
+              setTitle(e.target.value.trim())
             }}
           />
         </div>
-        <PrioritySelect defaultValue={priority} onChange={() => setChanged(true)} />
-        <StatusSelect defaultValue={status} onChange={() => setChanged(true)} />
+        <PrioritySelect
+          defaultValue={priority}
+          onChange={() => setChanged(true)}
+        />
+        <StatusSelect
+          defaultValue={status}
+          onChange={() => setChanged(true)}
+        />
         <div className="modal_footer">
-          <button className="btn-secondary" aria-label="Close modal" onClick={onClose}>cancel</button>
-          <button disabled={!title || !changed}>{todo ? 'save' : 'create'}</button>
+          <button className="btn-secondary" aria-label="Close modal" onClick={onClose}>
+            cancel
+          </button>
+          <button disabled={!title || !changed}>
+            {todo ? 'save' : 'create'}
+          </button>
         </div>
       </form>
     </div>

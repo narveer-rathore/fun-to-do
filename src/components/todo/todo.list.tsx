@@ -7,7 +7,7 @@ import { TodoActions } from "../../store/todo/todo.actions";
 import { TodoItem } from "./todo.item";
 import { Pagination } from "./todo.pagination";
 
-export const TodosList = ({ todos }: { todos: number[] }) => {
+export const TodoList = ({ todos }: { todos: number[] }) => {
   const todosById = useSelector((state: RootState) => state.todos.todosById);
   const sortBy = useSelector((state: RootState) => state.todos.sortBy);
   const sortOrder = useSelector((state: RootState) => state.todos.sortOrder);
@@ -22,7 +22,6 @@ export const TodosList = ({ todos }: { todos: number[] }) => {
   const filtered = useMemo(() => {
     const todoClone = [...todos].filter(t => {
       if (title && !todosById[t].title.replace(" ", "").toLowerCase().includes(title.toLowerCase())) {
-        console.log("returning false for title", title, todosById[t].title);
         return false;
       }
       if (priority !== ALL_SELECTION_VALUE && priority !== todosById[t].priority) {
@@ -44,7 +43,6 @@ export const TodosList = ({ todos }: { todos: number[] }) => {
 
   const updateSort = (key: keyof Todo) => {
     const nextOrder = (key === sortBy) ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
-    console.log("updateSort", key, nextOrder);
     dispatch({
       type: TodoActions.UPDATE_SORT,
       payload: {
@@ -54,19 +52,18 @@ export const TodosList = ({ todos }: { todos: number[] }) => {
     });
   }
 
-  const getSortIcon = (key: string) => {
+  const getSortOrderIcon = (key: string) => {
     if (sortBy === key) {
       return sortOrder === 'asc' ? 'fa-caret-down' : 'fa-caret-up';
     }
     return 'fa-sort';
   }
 
-  const setPageSize = (val: string) => {
-    const value = parseInt(val, 10);
+  const setPageSize = (val: number) => {
     dispatch({
       type: TodoActions.UPDATE_PAGE_SIZE,
       payload: {
-        pageSize: value
+        pageSize: val
       }
     });
   }
@@ -86,15 +83,15 @@ export const TodosList = ({ todos }: { todos: number[] }) => {
       <li className="todos_item todos_item--header">
         <button className="todos_cell todo_cell--2x" onClick={() => updateSort(SORT_BY.TITLE)}>
           Title
-          <i className={`fa ${getSortIcon(SORT_BY.TITLE)} ${sortBy === SORT_BY.TITLE ? 'active' : ''}`}></i>
+          <i className={`fa ${getSortOrderIcon(SORT_BY.TITLE)} ${sortBy === SORT_BY.TITLE ? 'active' : ''}`}></i>
         </button>
         <button className="todos_cell" onClick={() => updateSort(SORT_BY.STATUS)}>
           Status
-          <i className={`fa ${getSortIcon(SORT_BY.STATUS)} ${sortBy === SORT_BY.STATUS ? 'active' : ''}`}></i>
+          <i className={`fa ${getSortOrderIcon(SORT_BY.STATUS)} ${sortBy === SORT_BY.STATUS ? 'active' : ''}`}></i>
         </button>
         <button className="todos_cell" onClick={() => updateSort(SORT_BY.PRIORITY)}>
           Priority
-          <i className={`fa ${getSortIcon(SORT_BY.PRIORITY)} ${sortBy === SORT_BY.PRIORITY ? 'active' : ''}`}></i>
+          <i className={`fa ${getSortOrderIcon(SORT_BY.PRIORITY)} ${sortBy === SORT_BY.PRIORITY ? 'active' : ''}`}></i>
         </button>
         <div className="todos_actions">
           {/* bulk actions ? */}
