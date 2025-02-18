@@ -27,7 +27,7 @@
 }
 
 .todos_item--header .todos_cell .fa {
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 .todos_item--header .todos_cell .fa.active {
@@ -81,6 +81,7 @@
 
 .todo_controls .form_field {
   margin-right: 30px;
+  margin-bottom: 0.5rem;
 }
 
 .todo_controls .form_field label {

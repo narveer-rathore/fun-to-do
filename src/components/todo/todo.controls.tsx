@@ -18,6 +18,15 @@ export const TodoControls = () => {
     setShowAddModal(!showAddModal);
   };
 
+  const setPage = (val: number) => {
+    dispatch({
+      type: TodoActions.UPDATE_PAGE,
+      payload: {
+        currentPage: val
+      }
+    });
+  }
+
   const setTitleFilter = debounced((e: FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value.trim();
     try {
@@ -32,6 +41,7 @@ export const TodoControls = () => {
     } catch (e) {
       console.error("error in filtering todos", e);
     }
+    setPage(1);
   }, SEARCH_DEBOUNCE_TIME);
 
   const setFilter = (key: string, value: string) => {
@@ -42,7 +52,8 @@ export const TodoControls = () => {
           [key]: value
         }
       }
-    })
+    });
+    setPage(1);
   };
 
   return <>

@@ -38,7 +38,9 @@ export const TodoList = ({ todos }: { todos: number[] }) => {
       return String(todosById[a as number][sortBy]).localeCompare(String(todosById[b][sortBy]));
     });
     setTotalPages(Math.ceil(todoClone.length / pageSize));
-    return todoClone.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    const newClone = todoClone.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    console.log("return", newClone.length);
+    return newClone;
   }, [todos, todosById, sortBy, sortOrder, title, priority, status, pageSize, currentPage]);
 
   const updateSort = (key: keyof Todo) => {
@@ -60,6 +62,7 @@ export const TodoList = ({ todos }: { todos: number[] }) => {
   }
 
   const setPageSize = (val: number) => {
+    setPage(1);
     dispatch({
       type: TodoActions.UPDATE_PAGE_SIZE,
       payload: {
