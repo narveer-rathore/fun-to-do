@@ -1,0 +1,106 @@
+.todos_container {
+  width: 100%;
+  max-width: var(--container-size);
+  padding: 1rem;
+  margin: auto;
+}
+
+.todos_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todos_item--header {
+  border-bottom: 1px solid;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: black;
+  padding-top: 0.5rem;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
+}
+
+.todos_item--header .todos_cell {
+  align-items: center;
+  gap: 6px;
+}
+
+.todos_item--header .todos_cell .fa {
+  opacity: 0.3;
+}
+
+.todos_item--header .todos_cell .fa.active {
+  opacity: 1;
+}
+
+.todos_item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0;
+  padding: 0.5rem 0;
+}
+
+.todos_item p {
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.todos_item:not(.todos_item--header):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.todos_cell {
+  padding: 0 0.5rem;
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.todo_cell--2x {
+  flex: 3;
+}
+
+.todo_cell--2x:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.todo_controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
+}
+
+.todo_controls .form_field {
+  margin-right: 30px;
+}
+
+.todo_controls .form_field label {
+  min-width: 0;
+}
+
+.todo_controls input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.todo_controls button {
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.todos_actions {
+  display: flex;
+  flex: 0 0 34px;
+  align-self: flex-start;
+  margin-right: 10px;
+}

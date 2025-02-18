@@ -1,0 +1,16 @@
+.todo_controls--pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9em;
+}
+
+.todo_controls--pagination p {
+  margin: 0;
+}
+
+.todo_controls--page {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}

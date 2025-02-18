@@ -1,42 +1,174 @@
-#root {
+main {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+header {
+  text-align: center;
 }
 
-@keyframes logo-spin {
+img {
+  max-width: 100%;
+}
+
+@keyframes opacityAnimation {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: opacityAnimation 0.2s forwards;
 }
 
-.card {
-  padding: 2em;
+.modal_content {
+  position: fixed;
+  max-width: 100%;
+  width: 500px;
+  padding: 1rem;
+  top: 50%;
+  left: 50%;
+  border-radius: 0.4rem;
+  transform: translate(-50%, -70%);
+  background-color: var(--bg-color);
 }
 
-.read-the-docs {
-  color: #888;
+.modal_footer {
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Form Styling */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: green;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.--icon,
+.btn-secondary {
+  background: none;
+}
+
+.btn-secondary {
+  background-color: blueviolet;
+  padding: 0.25rem 0.5rem;
+}
+
+button.--icon:focus {
+  outline: none;
+}
+
+.todos_item button.--icon {
+  padding: 0.025rem;
+}
+
+button.--icon {
+  display: flex;
+  align-items: flex-start;
+}
+
+button.--icon:hover {
+  scale: 1.2;
+}
+
+button.--icon .fa {
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+button.--icon .fa-edit {
+  color: green;
+}
+
+button.--icon .fa-trash {
+  color: red;
+}
+
+.todos_item button {
+  background-color: transparent;
+  padding: 0 0.5rem;
+}
+
+.todos_item button:focus {
+  outline: none;
+}
+
+.form_input--name {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 2rem;
+  width: 100%;
+  border-bottom: 1px solid;
+}
+
+.form_field {
+  display: flex;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.form_field label {
+  min-width: 100px;
+}
+
+.form_field select {
+  max-width: 200px;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  opacity: 0.5;
+  border-top: 8px solid white;
+}
+
+h1 {
+  font-family: monospace;
 }
